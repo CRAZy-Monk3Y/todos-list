@@ -7,7 +7,7 @@ export const Todos = (props) => {
     <div className='container'>
         <h3>Todos List</h3>
         
-        <Todo></Todo>
+        <Todo todo={props.todos[0]}/>
     </div>
   )
 }
