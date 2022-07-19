@@ -4,6 +4,12 @@ import Header from './MyComponents/Header';
 import { Todos } from './MyComponents/Todos';
 import { Footer } from './MyComponents/Footer';
 import { AddTodo } from './MyComponents/AddTodo';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import { About } from './MyComponents/About';
 
 
 function App() {
@@ -62,12 +68,25 @@ function App() {
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos])
+
   return (
     <div className="App">
-      <Header title="My Todos List" searchBar={true}></Header>
-      <AddTodo addTodo={addTodo}></AddTodo>
-      <Todos todos={todos} onDelete={onDelete}></Todos>
-      <Footer></Footer>
+      <Router>
+        <Header title="My Todos List" searchBar={true}></Header>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <AddTodo addTodo={addTodo}></AddTodo>
+              <Todos todos={todos} onDelete={onDelete}></Todos>
+            </>
+          }>
+          </Route>
+          <Route path="/about" element={<About/>} />
+            
+        </Routes>
+
+        <Footer></Footer>
+      </Router>
     </div>
   )
 }

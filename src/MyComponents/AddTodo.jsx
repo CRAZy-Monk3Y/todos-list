@@ -10,6 +10,8 @@ export const AddTodo = ({addTodo}) => {
             alert("Title or Description can not be blank")
         }
         addTodo(title,desc);
+        setTitle("");
+        setDesc("");
     }
     return (
         <div className='container my-3' style={{textAlign:'left'}}>
