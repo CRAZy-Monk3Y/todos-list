@@ -1,51 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Header from './MyComponents/Header';
-import { Todos } from './MyComponents/Todos';
-import { Footer } from './MyComponents/Footer';
-import { AddTodo } from './MyComponents/AddTodo';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
-import { About } from './MyComponents/About';
-
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Header from "./MyComponents/Header";
+import { Todos } from "./MyComponents/Todos";
+import { Footer } from "./MyComponents/Footer";
+import { AddTodo } from "./MyComponents/AddTodo";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { About } from "./MyComponents/About";
 
 function App() {
   let initTodo;
-  if (localStorage.getItem('todos') === null) {
+  if (localStorage.getItem("todos") === null) {
     initTodo = [];
-  }
-  else {
-    initTodo = JSON.parse(localStorage.getItem('todos'));
+  } else {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
   }
   const onDelete = (todo) => {
     console.log("I am onDelete of todo: ", todo);
 
-    setTodos(todos.filter((e) => {
-      return e !== todo;
-    }));
+    setTodos(
+      todos.filter((e) => {
+        return e !== todo;
+      })
+    );
     localStorage.getItem("todos");
-  }
+  };
 
   const addTodo = (title, desc) => {
     console.log("I am adding this Todo: ", title, desc);
     let sno;
     if (todos.length === 0) {
       sno = 1;
-    }
-    else {
+    } else {
       sno = todos[todos.length - 1].sno + 1;
     }
     const myTodo = {
       sno: sno,
       title: title,
-      desc: desc
+      desc: desc,
     };
     setTodos([...todos, myTodo]);
     console.log(myTodo);
-  }
+  };
 
   let [todos, setTodos] = useState(initTodo);
   // {
@@ -66,29 +61,30 @@ function App() {
   // ]);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos])
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="App">
       <Router>
         <Header title="My Todos List" searchBar={true}></Header>
         <Routes>
-          <Route path="/" element={
-            <>
-              <AddTodo addTodo={addTodo}></AddTodo>
-              <Todos todos={todos} onDelete={onDelete}></Todos>
-            </>
-          }>
-          </Route>
-          <Route path="/about" element={<About/>} />
-            
+          <Route
+            path="/"
+            element={
+              <>
+                <AddTodo addTodo={addTodo}></AddTodo>
+                <Todos todos={todos} onDelete={onDelete}></Todos>
+              </>
+            }
+          ></Route>
+          <Route path="/about" element={<About />} />
         </Routes>
 
         <Footer></Footer>
       </Router>
     </div>
-  )
+  );
 }
 
 export default App;
