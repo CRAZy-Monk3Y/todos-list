@@ -8,6 +8,7 @@ export const AddTodo = ({addTodo}) => {
         e.preventDefault();
         if(!title || !desc) {
             alert("Title or Description can not be blank")
+            return;
         }
         addTodo(title,desc);
         setTitle("");
