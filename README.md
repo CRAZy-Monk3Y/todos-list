@@ -78,7 +78,7 @@ Please make sure to follow the existing code style and provide detailed informat
 
 ## License
 
-The Todos List project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per the terms of the license.
+The Todos List project is licensed under the [MIT License](LICENCE.md). Feel free to use and modify the code as per the terms of the license.
 
 ## Developer
 
